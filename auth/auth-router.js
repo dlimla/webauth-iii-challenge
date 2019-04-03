@@ -28,9 +28,9 @@ router.post('/login', (req, res) => {
     .first()
     .then(user => {
         if( user && bcrypt.compareSync(password, user.password)) {
-            // const token = generateToken(user)
+            const token = generateToken(user)
             res.status(200).json({ 
-                // token,
+                token,
                 message: `Welcome ${user.users_name}!`,
             });
         } else {
@@ -46,7 +46,7 @@ router.post('/login', (req, res) => {
 function generateToken(user) {
     const payload = {
         subject: user.id,
-        username: users_name
+        username: user.users_name
     };
 
     const options = {
