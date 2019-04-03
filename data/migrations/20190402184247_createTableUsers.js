@@ -8,7 +8,7 @@ exports.up = function(knex, Promise) {
         table.string('password')
             .notNullable()
             .unique();
-        table.string('department_id')
+        table.integer('department_id')
             .unsigned()
             .references('id')
             .inTable('department')
