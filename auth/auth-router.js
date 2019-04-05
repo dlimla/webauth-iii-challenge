@@ -13,6 +13,7 @@ router.post('/register', (req, res) => {
 
     Users.add(user)
     .then(saved => {
+        generateToken(user)
         res.status(200).json(saved);
     })
     .catch(error => {
